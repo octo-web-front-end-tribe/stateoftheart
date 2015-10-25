@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Pivotal Search</title>
+    <title>StateOfTheart</title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -13,9 +13,41 @@
 
     <!-- styles -->
     <link href="stylesheets/style.css" rel="stylesheet">
-
   </head>
   <body>
-    <%- body %>
+      <div class="navbar-collapse collapse inverse" id="navbar-header">
+          <div class="container-fluid">
+              <div class="about">
+                  <h4>About</h4>
+                  <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+              </div>
+              <div class="social">
+                  <h4>Contact</h4>
+                  <ul class="list-unstyled">
+                      <li><a href="#">Follow on Twitter</a></li>
+                      <li><a href="#">Like on Facebook</a></li>
+                      <li><a href="#">Email me</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+      <div class="navbar navbar-static-top">
+          <div class="container-fluid">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-header">
+                  ☰
+              </button>
+          </div>
+      </div>
+        <%- body %>
+      <footer class="text-muted">
+          <div class="container">
+              <p class="pull-right">
+                  <a href="#">Back to top</a>
+              </p>
+              <p>Album example is © Bootstrap, but please download and customize it for yourself!</p>
+          </div>
+      </footer>
+      <script src="/javascripts/jquery.min.js"></script>
+      <script src="/bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>
