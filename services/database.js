@@ -7,6 +7,6 @@ mongoose.connect(mongoURI, function(err) {
 
 var database = function() {};
 
-database.prototype.projects = mongoose.model('Projects', mongoose.Schema({name: String}), 'projects');
+database.prototype.projects = mongoose.model('Projects', mongoose.Schema({name: String, stacks: String}), 'projects');
 
 module.exports = database;

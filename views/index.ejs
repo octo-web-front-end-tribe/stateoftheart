@@ -1,7 +1,7 @@
 <section class="jumbotron text-center">
     <div class="container">
         <h1 class="jumbotron-heading"><%= title %></h1>
-        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
+        <p class="lead text-muted">Something short and leading about the collection below—its contents.</p>
     </div>
 </section>
 
@@ -13,11 +13,14 @@
             <div class="card">
                 <div class="card-block">
                     <h4 class="card-title"><%= projects[i].name %></h4>
-                    <h6 class="card-subtitle text-muted">Support card subtitle</h6>
                 </div>
                 <img src="/images/318x180.svg" alt="Card image">
-                <div class="card-block">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <div class="card-block stacks">
+                    <% if (projects[i].stacks) { %>
+                        <% projects[i].stacks.split(',').forEach(function(stack) { %>
+                        <span class="label label-info"><%= stack %></span>
+                        <% }) %>
+                    <% } %>
                 </div>
             </div>
             <%}%>

@@ -9,6 +9,8 @@ var expressLayouts = require('express-ejs-layouts');
 
 var app = express();
 
+app.locals.title = 'StateOftheart';
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
