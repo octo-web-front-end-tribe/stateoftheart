@@ -12,6 +12,12 @@
                         <label>Name</label>
                         <input type="text" name="name" class="form-control" value="<%= (typeof project === 'undefined' ? '' : project.name) %>">
                     </div>
+
+                    <div class="form-group">
+                        <label>Context</label>
+                        <textarea name="context" class="form-control"><%= (typeof project === 'undefined' ? '' : project.context) %></textarea>
+                    </div>
+
                     <div class="form-group">
                         <label>stack</label>
                         <textarea name="stacks" class="form-control" rows="3"><%= (typeof project === 'undefined' ? '' : project.stacks) %></textarea>

@@ -43,6 +43,7 @@ projectsController.prototype.editProject = function (req, res) {
     var project = req.body;
     db.projects.findById(id).exec().then(function (projectToUpdate) {
         projectToUpdate.name = project.name;
+        projectToUpdate.context = project.context;
         projectToUpdate.stacks = project.stacks;
         projectToUpdate.save();
 
