@@ -1,56 +1,68 @@
 'use strict';
-var db = new (require('../services/database'))();
 
-var projectsController = function () {
-};
+const Database = require('../services/database');
 
-projectsController.prototype.displayAll = function (req, res) {
-    db.projects.find().exec().then(function (projects) {
-        res.render('index', {projects: projects});
-    });
-};
+var db = new Database();
 
-projectsController.prototype.listProjectForm = function (req, res) {
-    db.projects.find().exec().then(function (projects) {
-        res.render('projectForm', {projects: projects, added: false});
-    });
-};
+class ProjectsController {
+    handleError(err) {
+        console.error(err);
+    }
 
-projectsController.prototype.editProjectForm = function (req, res) {
-    var id = req.params.id;
-    db.projects.findById(id).exec().then(function (project) {
-        db.projects.find().exec().then(function (projects) {
-            res.render('projectForm', {projects: projects, project: project, added: false});
+    displayAll(req, res) {
+        db.projects.find({}, (err, projects) => {
+            if (err) return this.handleError(err);
+            res.render('index', {projects: projects});
         });
-    });
-};
+    }
 
-projectsController.prototype.addProject = function (req, res) {
-    var project = req.body;
-    db.projects.create(project, function (err) {
-        if (err) {
-            console.error(err);
-        } else {
-            db.projects.find().exec().then(function (projects) {
-                res.render('projectForm', {projects: projects, added: true});
+    listProjectForm(req, res) {
+        db.projects.find({}, (err, projects) => {
+            if (err) return this.handleError(err);
+            res.render('projectForm', {projects: projects, added: false})
+        });
+    }
+
+    editProjectForm(req, res) {
+        var id = req.params.id;
+        db.projects.findById(id, (err, project) => {
+            if (err) return this.handleError(err);
+            db.projects.find({}, (err, projects) => {
+                if (err) return this.handleError(err);
+                res.render('projectForm', {projects: projects, project: project, added: false});
             });
-        }
-    });
-};
-
-projectsController.prototype.editProject = function (req, res) {
-    var id = req.params.id;
-    var project = req.body;
-    db.projects.findById(id).exec().then(function (projectToUpdate) {
-        projectToUpdate.name = project.name;
-        projectToUpdate.stacks = project.stacks;
-        projectToUpdate.save();
-
-        db.projects.find().exec().then(function (projects) {
-            res.render('projectForm', {projects: projects, project: project, added: true});
         });
+    }
 
-    });
-};
+    addProject(req, res) {
+        var project = req.body;
+        db.projects.create(project, (err) => {
+            if (err) return this.handleError(err);
+            db.projects.find((err, projects) => {
+                if (err) return this.handleError(err);
+                res.render('projectForm', {projects: projects, added: true})
+            });
+        });
+    }
 
-module.exports = projectsController;
+    editProject(req, res) {
+        var id = req.params.id;
+        var project = req.body;
+
+        db.projects.findById(id, (err, projectToUpdate) => {
+            if (err) return this.handleError(err);
+
+            projectToUpdate.name = project.name;
+            projectToUpdate.stacks = project.stacks;
+            projectToUpdate.save((err, updatedProject) => {
+              if (err) return this.handleError(err);
+              db.projects.find((err, projects) => {
+                if (err) return this.handleError(err);
+                res.render('projectForm', {projects: projects, project: updatedProject, added: true});
+              });
+            });
+        });
+    }
+}
+
+module.exports = ProjectsController;
