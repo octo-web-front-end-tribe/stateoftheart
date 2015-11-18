@@ -1,5 +1,6 @@
 'use strict';
 
+const async = require('async');
 const Database = require('../services/database');
 
 var db = new Database();
@@ -25,23 +26,36 @@ class ProjectsController {
 
     editProjectForm(req, res) {
         var id = req.params.id;
-        db.projects.findById(id, (err, project) => {
+
+        async.parallel({
+            project: (callback) => {
+                db.projects.findById(id).exec(callback);
+            },
+
+            projects: (callback) => {
+                db.projects.find().exec(callback);
+            }
+          }, (err, results) => {
             if (err) return this.handleError(err);
-            db.projects.find({}, (err, projects) => {
-                if (err) return this.handleError(err);
-                res.render('projectForm', {projects: projects, project: project, added: false});
-            });
-        });
+            res.render('projectForm', {projects: results.projects, project: results.project, added: false});
+          });
+
     }
 
     addProject(req, res) {
         var project = req.body;
-        db.projects.create(project, (err) => {
+
+        async.series({
+            newProject: (callback) => {
+                db.projects.create(project, callback);
+            },
+
+            projects: (callback) => {
+                db.projects.find().exec(callback);
+            }
+        }, (err, results) => {
             if (err) return this.handleError(err);
-            db.projects.find((err, projects) => {
-                if (err) return this.handleError(err);
-                res.render('projectForm', {projects: projects, added: true})
-            });
+            res.render('projectForm', {projects: results.projects, added: true})
         });
     }
 
@@ -49,18 +63,22 @@ class ProjectsController {
         var id = req.params.id;
         var project = req.body;
 
-        db.projects.findById(id, (err, projectToUpdate) => {
-            if (err) return this.handleError(err);
+        async.series({
+            updatedProject: (callback) => {
+                db.projects.findById(id).exec().then((projectToUpdate) => {
+                    projectToUpdate
+                        .set('name', project.name)
+                        .set('stacks', project.stacks)
+                        .save(callback);
+                });
+            },
 
-            projectToUpdate.name = project.name;
-            projectToUpdate.stacks = project.stacks;
-            projectToUpdate.save((err, updatedProject) => {
-              if (err) return this.handleError(err);
-              db.projects.find((err, projects) => {
-                if (err) return this.handleError(err);
-                res.render('projectForm', {projects: projects, project: updatedProject, added: true});
-              });
-            });
+            projects: (callback) => {
+                db.projects.find().exec(callback);
+            }
+        }, (err, results) => {
+            if (err) return this.handleError(err);
+            res.render('projectForm', {projects: results.projects, project: results.updatedProject, added: true});
         });
     }
 }
