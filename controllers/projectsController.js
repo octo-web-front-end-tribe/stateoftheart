@@ -1,57 +1,87 @@
 'use strict';
-var db = new (require('../services/database'))();
 
-var projectsController = function () {
-};
+const async = require('async');
+const Database = require('../services/database');
 
-projectsController.prototype.displayAll = function (req, res) {
-    db.projects.find().exec().then(function (projects) {
-        res.render('index', {projects: projects});
-    });
-};
+var db = new Database();
 
-projectsController.prototype.listProjectForm = function (req, res) {
-    db.projects.find().exec().then(function (projects) {
-        res.render('projectForm', {projects: projects, added: false});
-    });
-};
+class ProjectsController {
+    handleError(err) {
+        console.error(err);
+    }
 
-projectsController.prototype.editProjectForm = function (req, res) {
-    var id = req.params.id;
-    db.projects.findById(id).exec().then(function (project) {
-        db.projects.find().exec().then(function (projects) {
-            res.render('projectForm', {projects: projects, project: project, added: false});
+    displayAll(req, res) {
+        db.projects.find({}, (err, projects) => {
+            if (err) return this.handleError(err);
+            res.render('index', {projects: projects});
         });
-    });
-};
+    }
 
-projectsController.prototype.addProject = function (req, res) {
-    var project = req.body;
-    db.projects.create(project, function (err) {
-        if (err) {
-            console.error(err);
-        } else {
-            db.projects.find().exec().then(function (projects) {
-                res.render('projectForm', {projects: projects, added: true});
-            });
-        }
-    });
-};
-
-projectsController.prototype.editProject = function (req, res) {
-    var id = req.params.id;
-    var project = req.body;
-    db.projects.findById(id).exec().then(function (projectToUpdate) {
-        projectToUpdate.name = project.name;
-        projectToUpdate.context = project.context;
-        projectToUpdate.stacks = project.stacks;
-        projectToUpdate.save();
-
-        db.projects.find().exec().then(function (projects) {
-            res.render('projectForm', {projects: projects, project: project, added: true});
+    listProjectForm(req, res) {
+        db.projects.find({}, (err, projects) => {
+            if (err) return this.handleError(err);
+            res.render('projectForm', {projects: projects, added: false})
         });
+    }
 
-    });
-};
+    editProjectForm(req, res) {
+        var id = req.params.id;
 
-module.exports = projectsController;
+        async.parallel({
+            project: (callback) => {
+                db.projects.findById(id).exec(callback);
+            },
+
+            projects: (callback) => {
+                db.projects.find().exec(callback);
+            }
+          }, (err, results) => {
+            if (err) return this.handleError(err);
+            res.render('projectForm', {projects: results.projects, project: results.project, added: false});
+          });
+
+    }
+
+    addProject(req, res) {
+        var project = req.body;
+
+        async.series({
+            newProject: (callback) => {
+                db.projects.create(project, callback);
+            },
+
+            projects: (callback) => {
+                db.projects.find().exec(callback);
+            }
+        }, (err, results) => {
+            if (err) return this.handleError(err);
+            res.render('projectForm', {projects: results.projects, added: true})
+        });
+    }
+
+    editProject(req, res) {
+        var id = req.params.id;
+        var project = req.body;
+
+        async.series({
+            updatedProject: (callback) => {
+                db.projects.findById(id).exec().then((projectToUpdate) => {
+                    projectToUpdate
+                        .set('name', project.name)
+                        .set('stacks', project.stacks)
+                        .set('context', project.context)
+                        .save(callback);
+                });
+            },
+
+            projects: (callback) => {
+                db.projects.find().exec(callback);
+            }
+        }, (err, results) => {
+            if (err) return this.handleError(err);
+            res.render('projectForm', {projects: results.projects, project: results.updatedProject, added: true});
+        });
+    }
+}
+
+module.exports = ProjectsController;

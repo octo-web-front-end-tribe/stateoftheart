@@ -1,6 +1,8 @@
-var express = require('express');
+const express = require('express');
+const ProjectsController = require('../controllers/projectsController');
+
 var router = express.Router();
-var projectsController = new (require('../controllers/projectsController'))();
+var projectsController = new ProjectsController();
 
 router.get('/', projectsController.displayAll);
 router.get('/projects', projectsController.listProjectForm);
