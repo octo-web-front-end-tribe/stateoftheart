@@ -9,7 +9,7 @@ mongoose.connect(mongoURI, function(err) {
 
 class Database {
   constructor() {
-    this.projects = mongoose.model('Projects', mongoose.Schema({name: String, context: String, stacks: String}), 'projects');
+    this.projects = mongoose.model('Projects', mongoose.Schema({name: String, context: String, stacks: String, participants: String}), 'projects');
   }
 }
 
