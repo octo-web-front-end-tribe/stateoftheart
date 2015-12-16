@@ -4,6 +4,10 @@ body {
   min-height: 75rem;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 .main {
   margin-top: 3rem;
 }
@@ -82,6 +86,10 @@ body {
 
 .card-block {
   padding-bottom: 0;
+
+  .card-title {
+    text-transform: capitalize;
+  }
 }
 
 footer {
