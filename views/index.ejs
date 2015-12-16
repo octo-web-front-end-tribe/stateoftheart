@@ -1,7 +1,7 @@
 <section class="jumbotron text-center">
     <div class="container">
         <h1 class="jumbotron-heading"><%= title %></h1>
-        <p class="lead text-muted">Something short and leading about the collection below—its contents.</p>
+        <p class="lead text-muted">Faciliter la collecte des stacks des missions Octo dans le but de les partager et de voir la tendance actuelle</p>
     </div>
 </section>
 
@@ -15,12 +15,12 @@
                     <div class="card-block">
                         <h4 class="card-title"><%= projects[i].name %></h4>
                     </div>
-                    <img src="/images/318x180.svg" alt="Card image">
+                    <img src="/images/318x180.svg" alt="<%= projects[i].name %>">
                 </a>
                 <div class="card-block stacks">
                     <% if (projects[i].stacks) { %>
                         <% projects[i].stacks.split(',').forEach(function(stack) { %>
-                        <span class="label label-info"><%= stack %></span>
+                        <img class="img-circle" src="/images/<%=stack.trim()%>.png" alt="<%=stack%>" title="<%=stack%>">
                         <% }) %>
                     <% } %>
                 </div>

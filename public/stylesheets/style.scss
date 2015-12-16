@@ -82,6 +82,12 @@ a:hover {
   img {
     width: 100%;
   }
+
+  .logo {
+    background-color: #777777;
+    opacity: 0.2;
+    width: 350px;
+  }
 }
 
 .card-block {
@@ -104,5 +110,8 @@ footer p {
 .stacks {
   .label {
     font-size: 1rem;
+  }
+  img {
+    width: 40px;
   }
 }

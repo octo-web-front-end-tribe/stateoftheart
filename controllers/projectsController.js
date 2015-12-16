@@ -70,6 +70,7 @@ class ProjectsController {
                         .set('name', project.name)
                         .set('stacks', project.stacks)
                         .set('context', project.context)
+                        .set('participants', project.participants)
                         .save(callback);
                 });
             },
