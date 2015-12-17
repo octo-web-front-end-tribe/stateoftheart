@@ -15,7 +15,7 @@
                     <div class="card-block">
                         <h4 class="card-title"><%= projects[i].name %></h4>
                     </div>
-                    <img src="/images/318x180.svg" alt="<%= projects[i].name %>">
+                    <img src="/images/projects/<%=projects[i].name.trim() %>.jpg" alt="<%= projects[i].name %>">
                 </a>
                 <div class="card-block stacks">
                     <% if (projects[i].stacks) { %>
