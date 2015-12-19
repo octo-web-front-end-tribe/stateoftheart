@@ -6,6 +6,7 @@ const Database = require('../services/database');
 var db = new Database();
 
 class ProjectsController {
+
     handleError(err) {
         console.error(err);
     }
@@ -71,6 +72,8 @@ class ProjectsController {
                         .set('stacks', project.stacks)
                         .set('context', project.context)
                         .set('participants', project.participants)
+                        .set('startDate', project.startDate)
+                        .set('endDate', project.endDate)
                         .save(callback);
                 });
             },
@@ -80,7 +83,11 @@ class ProjectsController {
             }
         }, (err, results) => {
             if (err) return this.handleError(err);
-            res.render('projectForm', {projects: results.projects, project: results.updatedProject, added: true});
+            res.render('projectForm', {
+                projects: results.projects,
+                project: results.updatedProject,
+                added: true
+            });
         });
     }
 }

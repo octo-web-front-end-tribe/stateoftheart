@@ -2,5 +2,6 @@
 npm-debug.log
 .idea/
 node_modules/
+bower_components/
 public/stylesheets/style.css
 .sass-cache

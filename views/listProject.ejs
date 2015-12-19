@@ -1,7 +1,9 @@
-<h3>Projets</h3>
-<ul class="list-group">
-    <% for(var i = 0; i < projects.length; i++) { %>
-    <li class="list-group-item"><a href="/projects/<%= projects[i]._id %>/edit"><%= projects[i].name %></a></li>
-    <% } %>
-    <li class="list-group-item"><a href="/projects">+ Ajouter</a></li>
-</ul>
+<div id="project-list">
+    <h3>Projets</h3>
+    <ul class="list-group">
+        <% for(var i = 0; i < projects.length; i++) { %>
+        <li class="list-group-item"><a href="/projects/<%= projects[i]._id %>/edit"><%= projects[i].name %></a></li>
+        <% } %>
+        <li class="list-group-item"><a href="/projects">+ Ajouter</a></li>
+    </ul>
+</div>
