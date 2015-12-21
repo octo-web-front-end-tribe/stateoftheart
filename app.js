@@ -9,7 +9,7 @@ var expressLayouts = require('express-ejs-layouts');
 
 var app = express();
 
-app.locals.title = 'StateOftheart';
+app.locals.title = 'StateOfTheArt';
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
