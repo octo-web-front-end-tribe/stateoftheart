@@ -15,7 +15,13 @@
                     <div class="card-block">
                         <h4 class="card-title"><%= projects[i].name %></h4>
                     </div>
-                    <img src="/images/projects/<%=projects[i].name.trim() %>.jpg" alt="<%= projects[i].name %>">
+
+                    <% if(projects[i].image){ %>
+                    <img src="http://res.cloudinary.com/dyfaki2cl/image/upload/c_pad,h_180,w_318/<%=projects[i].image %>" alt="<%= projects[i].name %>">
+                    <% } else{ %>
+                    <img src="/images/projects/no-image.svg" alt="<%= projects[i].name %>">
+                    <% } %>
+
                 </a>
                 <div class="card-block stacks">
                     <% if (projects[i].stacks) { %>

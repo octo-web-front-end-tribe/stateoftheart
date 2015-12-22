@@ -34,7 +34,8 @@ class Database {
             stacks: String,
             participants: toArray,
             startDate: dateParams,
-            endDate: dateParams
+            endDate: dateParams,
+            image: String
         }), 'projects');
     }
 }

@@ -74,6 +74,7 @@ class ProjectsController {
                         .set('participants', project.participants)
                         .set('startDate', project.startDate)
                         .set('endDate', project.endDate)
+                        .set('image', project.image)
                         .save(callback);
                 });
             },
