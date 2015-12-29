@@ -1,0 +1,32 @@
+{
+  "name": "stateoftheart",
+  "description": "This app allows Octos to discover and get information about other's Octos project stacks",
+  "main": "app.js",
+  "authors": [
+    "WebFront tribe"
+  ],
+  "license": "",
+  "keywords": [
+    "octo",
+    "projects",
+    "stacks"
+  ],
+  "homepage": "https://github.com/octo-web-front-end-tribe/stateoftheart",
+  "moduleType": [
+    "es6",
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "eonasdan-bootstrap-datetimepicker": "~4.17.37",
+    "cloudinary-core": "~2.0.3",
+    "cloudinary-jquery": "~2.0.3",
+    "cloudinary-jquery-file-upload": "~2.0.3"
+  }
+}
