@@ -5,7 +5,7 @@ import HomeProjectList from './components/HomeProjectList'
 class StateOfTheArt extends React.Component {
 
     render () {
-        console.log('render StateOfTheArt');
+
         return (
             <div>
                 <Header title="StateOfTheArt" />

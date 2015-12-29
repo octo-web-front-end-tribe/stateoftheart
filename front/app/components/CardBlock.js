@@ -4,7 +4,7 @@ class CardBlock extends React.Component {
 
     render() {
 
-        var stacksElements = [];
+        var stackElements = [];
 
         if (this.props.stacks) {
 
@@ -15,19 +15,19 @@ class CardBlock extends React.Component {
             stacks.forEach(stack => {
 
                 const stackName = stack.trim();
-                stack = `/images/${stackName}.png`;
 
-                stacksElements.push(
-                    <img className="img-circle" src={stack}/>
-                );
+                if (stackName) {
+                    stack = require(`../../public/images/${stackName}.png`);
+                    stackElements.push(
+                        <img className="img-circle" src={stack}/>
+                    );
+                }
             });
         }
 
-        console.log(stacksElements);
-
         return (
             <div className="card-block stacks">
-                {stacksElements}
+                {stackElements}
             </div>
         );
     }

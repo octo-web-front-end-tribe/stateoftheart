@@ -4,10 +4,9 @@ module.exports = {
     loaders: [
         // image loader - https://www.npmjs.com/package/image-webpack-loader
         {
-            test: /\.(jpe?g|png|gif|svg|ico)$/i,
+            test: /\.(svg|png)$/,
             loaders: [
-                'file?hash=sha512&digest=hex&name=[hash].[ext]',
-                'image?bypassOnDebug&optimizationLevel=7&interlaced=false'
+                'file?hash=sha512&digest=hex&name=images/[hash].[ext]'
             ]
         },
         // javascript/jsx loader - https://www.npmjs.com/package/babel-loader

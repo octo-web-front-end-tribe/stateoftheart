@@ -3,7 +3,7 @@ import React from 'react'
 class Header extends React.Component {
 
     render () {
-        console.log('render header');
+
         return (
             <section className="jumbotron text-center">
                 <div className="container">
