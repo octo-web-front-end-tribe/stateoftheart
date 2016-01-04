@@ -3,44 +3,37 @@ import ProjectDetail from './ProjectDetail'
 
 class HomeProjectList extends React.Component {
 
-    constructor() {
+    state = {projects: []};
 
-        super();
-        this.render = this.render.bind(this);
-        this.state = {projects: []};
+    componentWillMount() {
 
-    }
-
-    componentDidMount() {
-
-        var xhr = new XMLHttpRequest();
+        let xhr = new XMLHttpRequest();
         xhr.open('get', 'http://localhost:3000/projects', true);
         xhr.onload = () => {
-            var data = JSON.parse(xhr.responseText);
+            let data = JSON.parse(xhr.responseText);
             this.setState(data);
         };
         xhr.send();
     }
 
-    render() {
+    renderProjectDetails() {
 
         if (this.state.projects.length == 0) {
             return <div>Loading projects...</div>
         }
 
-        let projectComponents = [];
+        return this.state.projects.map(project => (
+            <ProjectDetail key={project._id} project={project}/>
+        ));
+    }
 
-        this.state.projects.forEach(project => {
-            projectComponents.push(
-                <ProjectDetail project={project}/>
-            );
-        });
+    render() {
 
         return (
             <div className="album text-muted">
                 <div className="container">
                     <div className="row" id="project-list">
-                        {{projectComponents}}
+                        { this.renderProjectDetails() }
                     </div>
                 </div>
             </div>
@@ -48,4 +41,4 @@ class HomeProjectList extends React.Component {
     }
 }
 
-export default HomeProjectList
+export default HomeProjectList;

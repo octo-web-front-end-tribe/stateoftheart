@@ -2,35 +2,27 @@ import React from 'react'
 
 class CardBlock extends React.Component {
 
+    static defaultProps = { stacks: ''};
+
+    getStackElements () {
+        return this.props.stacks
+        .split(/[\s,;-]+/)
+        .map(element => element.trim())
+        .filter(element => element)
+        .map(stackName => {
+            let stackImage = require(`../../public/images/${stackName}.png`);
+            return <img key={stackName} className="img-circle" src={stackImage} />
+        });
+    }
+
     render() {
-
-        var stackElements = [];
-
-        if (this.props.stacks) {
-
-            const stacks = this.props.stacks.split(/[\s,;-]+/).map(
-                element => element.trim()
-            );
-
-            stacks.forEach(stack => {
-
-                const stackName = stack.trim();
-
-                if (stackName) {
-                    stack = require(`../../public/images/${stackName}.png`);
-                    stackElements.push(
-                        <img className="img-circle" src={stack}/>
-                    );
-                }
-            });
-        }
 
         return (
             <div className="card-block stacks">
-                {stackElements}
+                {this.getStackElements()}
             </div>
         );
     }
 }
 
-export default CardBlock
+export default CardBlock;

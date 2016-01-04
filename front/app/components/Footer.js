@@ -3,6 +3,7 @@ import React from 'react'
 class Footer extends React.Component {
 
     render () {
+
         return (
             <footer className="text-muted">
                 <div className="container">
@@ -15,4 +16,4 @@ class Footer extends React.Component {
     }
 }
 
-export default Footer
+export default Footer;

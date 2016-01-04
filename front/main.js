@@ -1,6 +1,8 @@
 require("./public/stylesheets/style.scss");
 
-var React = require('react');
-var StateOfTheArt = require('./app/StateOfTheArt.js');
+import React from 'react'
+import ReactDom from 'react-dom'
 
-React.render(<StateOfTheArt/>, document.getElementById('body'));
+var StateOfTheArt = require('./app/StateOfTheArt.js').default;
+
+ReactDom.render(<StateOfTheArt/>, document.getElementById('app'));
