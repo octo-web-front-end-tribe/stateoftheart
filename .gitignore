@@ -3,6 +3,5 @@ npm-debug.log
 .idea/
 node_modules/
 bower_components/
-server/public/stylesheets/style.css
+public/stylesheets/style.css
 .sass-cache
-.build/
