@@ -8,7 +8,7 @@
     "dev-server": "nodemon server/index.js --watch server",
     "dev-web": "webpack-dev-server --config ./webpack-dev.config.js --hot --progress --colors --content-base build",
     "dev": "nodemon server/index.js --watch server & webpack-dev-server --config ./webpack-dev.config.js --hot --progress --colors --content-base build",
-    "build": "rm build/*; webpack --config ./webpack-prod.config.js --progress --colors",
+    "build": "rm -rf build/*; webpack --config ./webpack-prod.config.js --progress --colors",
     "postinstall": "npm run build"
   },
   "dependencies": {
@@ -24,7 +24,6 @@
     "moment": "^2.11.0",
     "mongoose": "^4.3.4",
     "morgan": "~1.6.1",
-    "node-sass": "^3.4.0",
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
