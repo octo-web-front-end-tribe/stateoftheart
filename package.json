@@ -3,13 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "server": "node ./server/bin/www",
+    "start": "node ./server/bin/www",
     "build-css": "node-sass --include-path scss public/stylesheets/style.scss  public/stylesheets/style.css",
     "dev-server": "nodemon server/index.js --watch server",
     "dev-web": "webpack-dev-server --config ./webpack-dev.config.js --hot --progress --colors --content-base build",
     "dev": "nodemon server/index.js --watch server & webpack-dev-server --config ./webpack-dev.config.js --hot --progress --colors --content-base build",
     "build": "rm build/*; webpack --config ./webpack-prod.config.js --progress --colors",
-    "postinstall": "npm run build; npm run server"
+    "postinstall": "npm run build"
   },
   "dependencies": {
     "async": "^1.5.1",
