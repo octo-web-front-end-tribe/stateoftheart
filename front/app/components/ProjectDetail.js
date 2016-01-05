@@ -1,5 +1,5 @@
 import React from 'react'
-import CloudinaryImage from './generic/CloudinaryImage';
+import CloudinaryImage from './generic/cloudinaryImage';
 import CardBlock from './CardBlock'
 
 class ProjectDetail extends React.Component {
