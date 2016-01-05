@@ -1,10 +1,19 @@
 const express = require('express');
+const path = require('path');
 const ProjectsController = require('../controllers/projectsController');
 
 var router = express.Router();
 var projectsController = new ProjectsController();
+var staticPath = path.join(__dirname, '../../build');
 
-router.get('/', projectsController.displayAll);
+// the home page is a react app, we serve it statically for the moment
+router.get('/', (req, res) => {
+    res.header('Cache-Control', "max-age=60, must-revalidate, private");
+    res.sendFile('index.html', {
+        root: staticPath
+    });
+});
+
 router.get('/projects', projectsController.listProjectForm);
 router.get('/projects/:id/edit', projectsController.editProjectForm);
 router.post('/projects', projectsController.addProject);
