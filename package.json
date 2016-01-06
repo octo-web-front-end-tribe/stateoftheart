@@ -4,12 +4,12 @@
   "private": true,
   "scripts": {
     "start": "node ./server/bin/www",
-    "build-css": "node-sass --include-path scss public/stylesheets/style.scss  public/stylesheets/style.css",
+    "build-css": "node-sass --include-path scss server/public/stylesheets/style.scss  server/public/stylesheets/style.css",
     "dev-server": "nodemon server/index.js --watch server",
     "dev-web": "webpack-dev-server --config ./webpack-dev.config.js --hot --progress --colors --content-base build",
     "dev": "nodemon server/index.js --watch server & webpack-dev-server --config ./webpack-dev.config.js --hot --progress --colors --content-base build",
     "build": "rm -rf build/*; webpack --config ./webpack-prod.config.js --progress --colors",
-    "postinstall": "npm run build"
+    "postinstall": "npm run build-css; npm run build"
   },
   "dependencies": {
     "async": "^1.5.1",
