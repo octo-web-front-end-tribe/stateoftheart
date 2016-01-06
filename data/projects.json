@@ -1,0 +1,45 @@
+{ 
+    "_id" : ObjectId("5672885e9d74ce8a03a958ff"), 
+    "name" : "Boursorama", 
+    "context" : "", 
+    "stacks" : "nodejs,angular,hapi,cassandra,bootstrap", 
+    "__v" : NumberInt(0), 
+    "image" : "qnbfdoeb8ccuribjbmd3.jpg"
+}
+{ 
+    "_id" : ObjectId("567288779d74ce8a03a95900"), 
+    "name" : "FranceConnect", 
+    "context" : "", 
+    "stacks" : "nodejs,mongodb,elasticsearch,openidconnect", 
+    "__v" : NumberInt(0), 
+    "participants" : "", 
+    "image" : "kblew1pqi2ezd9dm4exm.png"
+}
+{ 
+    "_id" : ObjectId("5672884b9d74ce8a03a958fe"), 
+    "name" : "TPS - SGMAP", 
+    "context" : "", 
+    "stacks" : "rails, bootstrap, postgresql\r\n", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("564c9d0a2d5ed05a1c719a3f"), 
+    "name" : "Fastbooking", 
+    "__v" : NumberInt(15), 
+    "context" : "Context", 
+    "startDate" : ISODate("2015-06-20T22:00:00.000+0000"), 
+    "endDate" : ISODate("2015-09-09T22:00:00.000+0000"), 
+    "participants" : [
+        "MON", 
+        "TUE", 
+        "WED", 
+        "THU"
+    ]
+}
+{ 
+    "_id" : ObjectId("567288279d74ce8a03a958fd"), 
+    "name" : "ClubMed", 
+    "context" : "", 
+    "__v" : NumberInt(1), 
+    "image" : "kple1ckswpiy8y3e9siz.jpg"
+}
