@@ -1,5 +1,6 @@
 import React from 'react'
 import ProjectDetail from './ProjectDetail'
+import SuperAgent from 'superagent'
 
 class HomeProjectList extends React.Component {
 
@@ -7,13 +8,10 @@ class HomeProjectList extends React.Component {
 
     componentWillMount() {
 
-        let xhr = new XMLHttpRequest();
-        xhr.open('get', '/api/projects', true);
-        xhr.onload = () => {
-            let data = JSON.parse(xhr.responseText);
-            this.setState(data);
-        };
-        xhr.send();
+        SuperAgent.get('/projects/')
+            .end(function (err, res) {
+                this.setState(res.body);
+            }.bind(this));
     }
 
     renderProjectDetails() {
