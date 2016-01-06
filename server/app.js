@@ -10,7 +10,6 @@ var compression = require('compression');
 var cors = require('cors');
 
 var app = express();
-var static_path = path.join(__dirname, './../build');
 
 app.locals.title = 'StateOfTheArt';
 
@@ -30,12 +29,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(expressLayouts);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, './../build')));
 
 app.use('/', routes);
-
-app.use('/', express.static(static_path, {
-  maxage: 31557600
-}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
