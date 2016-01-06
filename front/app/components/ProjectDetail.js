@@ -7,7 +7,7 @@ class ProjectDetail extends React.Component {
     render () {
 
         let project = this.props.project;
-        let projectUrl = `http://localhost:3000/projects/${this.props.project._id}/edit`;
+        let projectUrl = `/projects/${this.props.project._id}/edit`;
 
         return (
             <div className="card">
