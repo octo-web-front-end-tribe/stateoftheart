@@ -8,7 +8,7 @@ class HomeProjectList extends React.Component {
     componentWillMount() {
 
         let xhr = new XMLHttpRequest();
-        xhr.open('get', '/projects', true);
+        xhr.open('get', '/api/projects', true);
         xhr.onload = () => {
             let data = JSON.parse(xhr.responseText);
             this.setState(data);
