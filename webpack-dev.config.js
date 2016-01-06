@@ -23,7 +23,7 @@ module.exports = {
     devServer: {
         // proxy calls to api to our own node server backend
         proxy: {
-            '/api/*': 'http://localhost:3000/'
+            '*/projects/*': 'http://localhost:3000/'
         }
     },
     module: {

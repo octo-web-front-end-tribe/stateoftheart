@@ -8,7 +8,7 @@ class HomeProjectList extends React.Component {
 
     componentWillMount() {
 
-        SuperAgent.get('/projects/')
+        SuperAgent.get('/api/projects/')
             .end(function (err, res) {
                 this.setState(res.body);
             }.bind(this));
