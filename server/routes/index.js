@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/api/projects', projectsController.listProjectForm);
+router.get('/projects', projectsController.listProjects);
 router.get('/projects/:id/edit', projectsController.editProjectForm);
 router.post('/projects', projectsController.addProject);
 router.post('/projects/:id/edit', projectsController.editProject);

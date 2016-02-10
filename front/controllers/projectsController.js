@@ -21,7 +21,7 @@ class ProjectsController {
         });
     }
 
-    listProjects(req, res) {
+    listProjectForm(req, res) {
 
         db.projects.find({}, (err, projects) => {
 
