@@ -1,8 +1,13 @@
 require("./public/stylesheets/style.scss");
 
 import React from 'react'
-import ReactDom from 'react-dom'
+import { render } from 'react-dom'
+import Root from './containers/Root'
+import configureStore from './configureStore'
 
-var StateOfTheArt = require('./app/StateOfTheArt.js').default;
+const store = configureStore();
 
-ReactDom.render(<StateOfTheArt/>, document.getElementById('app'));
+render(
+  <Root />,
+  document.getElementById('app')
+)

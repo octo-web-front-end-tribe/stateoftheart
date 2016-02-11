@@ -10,7 +10,7 @@ class CardBlock extends React.Component {
         .map(element => element.trim())
         .filter(element => element)
         .map(stackName => {
-            let stackImage = require(`../../public/images/${stackName}.png`);
+            let stackImage = require(`../public/images/${stackName}.png`);
             return <img key={stackName} className="img-circle" src={stackImage} />
         });
     }
