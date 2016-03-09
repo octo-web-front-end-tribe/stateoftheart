@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./server/bin/www",
-    "build-css": "node-sass --include-path scss server/public/stylesheets/style.scss  server/public/stylesheets/style.css",
+    "build-css": "node-sass --include-path scss front/public/stylesheets/style.scss  front/public/stylesheets/style.css",
     "dev-server": "nodemon server/index.js --watch server",
     "dev-web": "webpack-dev-server --config ./webpack-dev.config.js --hot --progress --colors --content-base build",
     "dev": "nodemon server/index.js --watch server & webpack-dev-server --config ./webpack-dev.config.js --hot --progress --colors --content-base build",

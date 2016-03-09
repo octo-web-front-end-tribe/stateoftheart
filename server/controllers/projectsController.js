@@ -36,19 +36,13 @@ class ProjectsController {
     editProjectForm(req, res) {
         var id = req.params.id;
 
-        async.parallel({
-            project: (callback) => {
-                db.projects.findById(id).exec(callback);
-            },
-
-            projects: (callback) => {
-                db.projects.find().exec(callback);
+        db.projects.findById(id).exec(function(err, project) {
+            if (err) {
+                return this.handleError(err);
             }
-          }, (err, results) => {
-            if (err) return this.handleError(err);
-            res.render('projectForm', {projects: results.projects, project: results.project, added: false});
-          });
 
+            res.json(project);
+        });
     }
 
     addProject(req, res) {
