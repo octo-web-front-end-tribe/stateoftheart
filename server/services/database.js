@@ -2,6 +2,7 @@
 
 var mongoose = require('mongoose');
 var dbUtils = require('./utils/databaseUtils');
+//var mongoURI = process.env.MONGOLAB_URI || 'mongodb://billetterie-db:27017/stateoftheart';
 var mongoURI = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/stateoftheart';
 var Date = mongoose.Schema.Types.Date;
 var Array = mongoose.Schema.Types.Mixed;

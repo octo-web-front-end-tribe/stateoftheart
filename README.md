@@ -6,7 +6,7 @@ https://trello.com/b/Sbi25VCv/stateoftheart
 
 ```sh
 git clone git@github.com:octo-web-front-end-tribe/stateoftheart.git
-cd webpack-starter
+cd stateoftheart
 npm install
 npm run dev
 Browse to http://localhost:8080

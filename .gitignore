@@ -5,4 +5,4 @@ node_modules/
 bower_components/
 front/public/stylesheets/style.css
 .sass-cache
-build/
+build/**
